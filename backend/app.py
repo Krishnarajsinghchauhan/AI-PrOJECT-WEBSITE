@@ -20,7 +20,15 @@ def create_app():
 
     app.config.from_object(Config)
 
-    CORS(app, origins=["http://localhost:3000", "https://ai-pr-oject-website.vercel.app/"])
+    CORS(
+        app,
+        resources={r"/*": {"origins": [
+            "http://localhost:3000",
+            "https://ai-pr-oject-website.vercel.app"
+        ]}},
+        supports_credentials=True
+    )
+
 
     db.init_app(app)
 
